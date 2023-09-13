@@ -8,7 +8,7 @@ namespace Challenge.ConsoleApp
         {
             // Specify the path to the CSV file you want to read.
             //string csvFilePath = args[0];
-            string csvFilePath = "C:\\Users\\kamil.szywala\\Desktop\\postcodes.csv";
+            string csvFilePath = "C:\\Users\\kamil.szywala\\Desktop\\Challenge\\Challenge.Api\\Challenge.ConsoleApp\\postcodes.csv";
 
             // Create a TextFieldParser instance to read the CSV file.
             using (TextFieldParser parser = new TextFieldParser(csvFilePath))
