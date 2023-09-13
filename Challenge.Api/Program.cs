@@ -1,3 +1,6 @@
+using Challenge.Api.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace Challenge.Api
 {
     public class Program
@@ -12,7 +15,10 @@ namespace Challenge.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddDbContext<DatabaseContext>(
+                options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("EskinsDbContext"))
+                );
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
