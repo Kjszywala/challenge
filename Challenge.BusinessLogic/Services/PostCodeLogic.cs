@@ -49,7 +49,7 @@ namespace Challenge.BusinessLogic.Services
         /// </summary>
         /// <param name="degrees"></param>
         /// <returns></returns>
-        private static double ToRadians(double degrees)
+        public static double ToRadians(double degrees)
         {
             return degrees * (Math.PI / 180.0);
         }
