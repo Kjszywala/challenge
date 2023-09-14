@@ -39,11 +39,11 @@ namespace Challenge.Api.Migrations
                     b.Property<int?>("Eastings")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Latitude")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
 
-                    b.Property<decimal?>("Longitude")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
 
                     b.Property<int?>("Northings")
                         .HasColumnType("int");

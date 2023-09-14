@@ -11,8 +11,8 @@ namespace Challenge.ConsoleApp.Models
         public string? Postcode { get; set; }
         public int? Eastings { get; set; }
         public int? Northings { get; set; }
-        public decimal? Latitude { get; set; }
-        public decimal? Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
         public string? Town { get; set; }
         public string? Region { get; set; }
         public string? Country { get; set; }

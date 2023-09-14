@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Challenge.Api.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230913095121_initialCreate")]
+    [Migration("20230914092012_initialCreate")]
     partial class initialCreate
     {
         /// <inheritdoc />
@@ -42,11 +42,11 @@ namespace Challenge.Api.Migrations
                     b.Property<int?>("Eastings")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Latitude")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
 
-                    b.Property<decimal?>("Longitude")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
 
                     b.Property<int?>("Northings")
                         .HasColumnType("int");

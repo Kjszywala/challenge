@@ -2,7 +2,6 @@
 using CsvHelper;
 using CsvHelper.Configuration;
 using System.Globalization;
-using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
 namespace Challenge.ConsoleApp
@@ -27,7 +26,7 @@ namespace Challenge.ConsoleApp
                         Country = record.Country,
                         CountryString = record.CountryString,
                         Eastings = record.Eastings,
-                        Latitude    = record.Latitude,
+                        Latitude = record.Latitude,
                         Longitude = record.Longitude,
                         Northings = record.Northings,
                         Postcode = record.Postcode,

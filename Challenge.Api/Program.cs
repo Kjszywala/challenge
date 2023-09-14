@@ -1,4 +1,6 @@
 using Challenge.Api.Models;
+using Challenge.BusinessLogic.Interfaces;
+using Challenge.BusinessLogic.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Challenge.Api
@@ -19,7 +21,12 @@ namespace Challenge.Api
                 options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("EskinsDbContext"))
                 );
+
+            // Dependency injection here.
+            builder.Services.AddScoped<IPostCodeLogic, PostCodeLogic>();
+
             var app = builder.Build();
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
