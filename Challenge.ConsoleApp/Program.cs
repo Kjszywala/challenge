@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualBasic.FileIO;
+﻿using Challenge.ConsoleApp.Models;
+using CsvHelper;
+using CsvHelper.Configuration;
+using System.Globalization;
 
 namespace Challenge.ConsoleApp
 {
@@ -10,29 +13,14 @@ namespace Challenge.ConsoleApp
             //string csvFilePath = args[0];
             string csvFilePath = "C:\\Users\\kamil.szywala\\Desktop\\Challenge\\Challenge.Api\\Challenge.ConsoleApp\\postcodes.csv";
 
-            // Create a TextFieldParser instance to read the CSV file.
-            using (TextFieldParser parser = new TextFieldParser(csvFilePath))
+            using (var reader = new StreamReader(csvFilePath))
+            using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)))
             {
-                // Set the field type to delimited, indicating that fields are separated by a delimiter (comma).
-                parser.TextFieldType = FieldType.Delimited;
+                var records = csv.GetRecords<PostCode>(); // Replace MyClass with your own class that matches your CSV structure.
 
-                // Set the delimiter used in the CSV file (comma in this case).
-                parser.SetDelimiters(",");
-
-                // Continue reading until the end of the CSV file is reached.
-                while (!parser.EndOfData)
+                foreach (var record in records)
                 {
-                    // Read a line from the CSV file and split it into fields based on the delimiter.
-                    string[] fields = parser.ReadFields();
-
-                    // Iterate through the fields in the current row and print them.
-                    foreach (string field in fields)
-                    {
-                        Console.Write(field + " | ");
-                    }
-
-                    // Move to the next line in the CSV file.
-                    Console.WriteLine();
+                    Console.WriteLine($"{record.Postcode}, {record.Country}, {record.CountryString}"); // Replace Field1, Field2, Field3 with your CSV field names.
                 }
             }
         }
