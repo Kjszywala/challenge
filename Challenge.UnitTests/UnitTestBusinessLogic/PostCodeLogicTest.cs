@@ -65,7 +65,7 @@ namespace Challenge.UnitTests.UnitTestBusinessLogic
         public void ToRadians_ConvertsPositiveDegreesToRadians()
         {
             // Arrange
-            // 90 degrees is π/2 radians
+            // 90 degrees is n/2 radians
             double degrees = 90.0; 
 
             // Act
@@ -80,7 +80,7 @@ namespace Challenge.UnitTests.UnitTestBusinessLogic
         public void ToRadians_ConvertsNegativeDegreesToRadians()
         {
             // Arrange
-            // -180 degrees is -π radians
+            // -180 degrees is -n radians
             double degrees = -180.0; 
 
             // Act

@@ -19,24 +19,6 @@ namespace Challenge.Api.Controllers
             PostCodeLogic = _PostCodeLogic;
         }
 
-        // GET: api/PostCodes
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<PostCodes>>> GetPostCodes()
-        {
-            try
-            {
-                if (_context.PostCodes == null)
-                {
-                    return NotFound();
-                }
-                return await _context.PostCodes.ToListAsync();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-
         // GET: api/PostCodes/dt4
         [HttpGet("{partialString}")]
         public async Task<ActionResult<List<string?>>> SearchPostCodes(string partialString)
@@ -94,18 +76,6 @@ namespace Challenge.Api.Controllers
                 await _context.SaveChangesAsync();
 
                 return CreatedAtAction("GetPostCodes", new { id = postCodes.Id }, postCodes);
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-
-        private bool PostCodesExists(int id)
-        {
-            try
-            {
-                return (_context.PostCodes?.Any(e => e.Id == id)).GetValueOrDefault();
             }
             catch (Exception e)
             {

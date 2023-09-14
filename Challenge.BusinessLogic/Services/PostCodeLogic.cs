@@ -5,8 +5,8 @@ namespace Challenge.BusinessLogic.Services
     public class PostCodeLogic : IPostCodeLogic
     {
         #region Variables
-
-        private const double EarthRadiusKm = 6371.0; // Earth radius in kilometers
+        // Earth radius in kilometers
+        private const double EarthRadiusKm = 6371.0;
 
         #endregion
 
