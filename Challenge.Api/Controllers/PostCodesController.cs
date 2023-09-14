@@ -61,7 +61,7 @@ namespace Challenge.Api.Controllers
             }
         }
 
-        [HttpGet("{latitude}/{longitude}/{maxDistanceInKilometers}")]
+        [HttpGet("near")]
         public async Task<ActionResult<List<string>>> GetPostcodesNearLocation(double latitude, double longitude, double maxDistanceInKilometers)
         {
             try
