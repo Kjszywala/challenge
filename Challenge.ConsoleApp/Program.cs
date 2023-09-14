@@ -10,14 +10,16 @@ namespace Challenge.ConsoleApp
     {
         static async Task Main(string[] args)
         {
-            // Specify the path to the CSV file you want to read.
+            // Specify the path to the CSV file.
             //string csvFilePath = args[0];
             string csvFilePath = "C:\\Users\\kamil.szywala\\Desktop\\Challenge\\Challenge.Api\\Challenge.ConsoleApp\\postcodes.csv";
+            string URI = "/api/PostCodes/";
+            string URL = "https://localhost:7008/swagger/v1/swagger.json";
 
             using (var reader = new StreamReader(csvFilePath))
             using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)))
             {
-                var records = csv.GetRecords<PostCode>(); // Replace MyClass with your own class that matches your CSV structure.
+                var records = csv.GetRecords<PostCode>();
 
                 foreach (var record in records)
                 {
@@ -33,8 +35,6 @@ namespace Challenge.ConsoleApp
                         Region = record.Region,
                         Town = record.Town,
                     };
-                    string URI = "/api/PostCodes/";
-                    string URL = "https://localhost:7008/swagger/v1/swagger.json";
                     using (var httpClient = new HttpClient())
                     {
                         // Set the base address of your API
@@ -46,18 +46,18 @@ namespace Challenge.ConsoleApp
                         // Check the response status and handle it accordingly
                         if (response.IsSuccessStatusCode)
                         {
-                            // Request was successful, handle the response content here
+                            // Request was successful
                             var responseBody = await response.Content.ReadAsStringAsync();
                             Console.WriteLine("Response: " + responseBody);
                         }
                         else
                         {
-                            // Request failed, handle the error here
+                            // Request failed
                             Console.WriteLine("Error: " + response.StatusCode);
                         }
                     }
 
-                    Console.WriteLine($"{record.Postcode}, {record.Country}, {record.CountryString}"); // Replace Field1, Field2, Field3 with your CSV field names.
+                    Console.WriteLine($"{record.Postcode}, {record.Country}, {record.CountryString}");
                 }
             }
         }
