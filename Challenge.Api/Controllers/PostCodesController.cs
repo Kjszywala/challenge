@@ -75,7 +75,7 @@ namespace Challenge.Api.Controllers
                 _context.PostCodes.Add(postCodes);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction("GetPostCodes", new { id = postCodes.Id }, postCodes);
+                return Ok();
             }
             catch (Exception e)
             {

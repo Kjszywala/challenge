@@ -47,8 +47,7 @@ namespace Challenge.ConsoleApp
                         if (response.IsSuccessStatusCode)
                         {
                             // Request was successful
-                            var responseBody = await response.Content.ReadAsStringAsync();
-                            Console.WriteLine("Response: " + responseBody);
+                            Console.WriteLine("Response: " + response.StatusCode);
                         }
                         else
                         {
