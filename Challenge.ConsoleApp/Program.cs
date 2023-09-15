@@ -4,6 +4,7 @@ using CsvHelper.Configuration;
 using Newtonsoft.Json.Linq;
 using System.Globalization;
 using System.Net.Http.Json;
+using System.Text;
 
 namespace Challenge.ConsoleApp
 {
@@ -13,7 +14,7 @@ namespace Challenge.ConsoleApp
 		public const string URL = "https://localhost:7008/swagger/v1/swagger.json";
 		static async Task Main(string[] args)
         {
-            try
+			try
 			{
 				switch (args.Length)
 				{
@@ -33,10 +34,18 @@ namespace Challenge.ConsoleApp
 							break;
 						}
 					case 3:
-
+						await GetPstcodesNearLocation(Double.Parse(args[0]), Double.Parse(args[1]), Double.Parse(args[2]));
 						break;
 					default:
-						await Console.Out.WriteLineAsync("Too many parameters given.");
+						// Validate latitude
+						if (ValidateInputs.ValidateLatitude(args[0]) ||
+							ValidateInputs.ValidateLongitude(args[2]) ||
+							ValidateInputs.ValidateMaxDistanceInKilometers(args[3]))
+						{
+							await Console.Out.WriteLineAsync("Invalid parameter value.");
+							break;
+						}
+						await Console.Out.WriteLineAsync("Wrong number of parameters given.");
 						break;
 				}
 			}
@@ -53,9 +62,6 @@ namespace Challenge.ConsoleApp
 		/// <returns></returns>
         static async Task MigratePostcodes(string csvFilePath)
         {
-			string URI = "/api/PostCodes/";
-			string URL = "https://localhost:7008/swagger/v1/swagger.json";
-
 			using (var reader = new StreamReader(csvFilePath))
 			using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)))
 			{
@@ -123,6 +129,60 @@ namespace Challenge.ConsoleApp
 			catch (Exception ex)
 			{
 				throw new Exception($"Endpoint: {URI}\nFailed to retrieve data from API. Task<T> GetAsync(int Id)", ex);
+			}
+		}
+
+		/// <summary>
+		/// Return postcodes near a specific location (latitude / longitude).
+		/// </summary>
+		/// <param name="latitude"></param>
+		/// <param name="longitude"></param>
+		/// <param name="maxDistanceInKilometers"></param>
+		/// <returns></returns>
+		static async Task GetPstcodesNearLocation(double latitude, double longitude, double maxDistanceInKilometers)
+		{
+			using (HttpClient httpClient = new HttpClient())
+			{
+				httpClient.BaseAddress = new Uri(URL);
+
+				// Create a model with the required data
+				var requestModel = new
+				{
+					Latitude = latitude,
+					Longitude = longitude,
+					MaxDistanceInKilometers = maxDistanceInKilometers
+				};
+
+				// Serialize the model to JSON
+				string jsonRequest = Newtonsoft.Json.JsonConvert.SerializeObject(requestModel);
+
+				// Create a StringContent with the JSON data
+				StringContent content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+				try
+				{
+					// Send the POST request
+					HttpResponseMessage response = await httpClient.PostAsync(URI + "near", content);
+
+					// Check if the request was successful
+					if (response.IsSuccessStatusCode)
+					{
+						// Read and parse the response content
+						string jsonResponse = await response.Content.ReadAsStringAsync();
+                        // Handle the jsonResponse (e.g., deserialize it to a list of strings)
+                        // var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(jsonResponse);
+                        // Do something with the result
+                        await Console.Out.WriteLineAsync(FormatJson(jsonResponse));
+                    }
+					else
+					{
+						Console.WriteLine($"HTTP Error: {response.StatusCode}");
+					}
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine($"Exception: {ex.Message}");
+				}
 			}
 		}
 

@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Challenge.BusinessLogic\Challenge.BusinessLogic.csproj" />
+    <ProjectReference Include="..\Challenge.ConsoleApp\Challenge.ConsoleApp.csproj" />
   </ItemGroup>
 
 </Project>

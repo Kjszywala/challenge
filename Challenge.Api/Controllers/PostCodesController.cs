@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Challenge.Api.Models;
 using Challenge.Api.Models.Database;
 using Challenge.BusinessLogic.Interfaces;
+using Challenge.Api.Helpers;
 
 namespace Challenge.Api.Controllers
 {
@@ -43,27 +44,50 @@ namespace Challenge.Api.Controllers
             }
         }
 
-        [HttpGet("near")]
-        public async Task<ActionResult<List<string>>> GetPostcodesNearLocation(double latitude, double longitude, double maxDistanceInKilometers)
-        {
-            try
-            {
-                // Calculate the distance between the provided location and stored locations
-                var nearbyPostcodes = _context.PostCodes
-                    .AsEnumerable()
-                    .Where(postcode => PostCodeLogic.CalculateDistance(latitude, longitude, postcode.Latitude, postcode.Longitude) <= maxDistanceInKilometers)
-                    .Select(postcode => postcode.Postcode);
+		[HttpPost("near")]
+		public async Task<ActionResult<List<string>>> GetPostcodesNearLocation([FromBody] LocationRequestModel request)
+		{
+			try
+			{
+				double latitude = request.Latitude;
+				double longitude = request.Longitude;
+				double maxDistanceInKilometers = request.MaxDistanceInKilometers;
 
-                return nearbyPostcodes.ToList();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
+				// Calculate the distance between the provided location and stored locations
+				var nearbyPostcodes = _context.PostCodes
+					.AsEnumerable()
+					.Where(postcode => PostCodeLogic.CalculateDistance(latitude, longitude, postcode.Latitude, postcode.Longitude) <= maxDistanceInKilometers)
+					.Select(postcode => postcode.Postcode);
 
-        // POST: api/PostCodes
-        [HttpPost]
+				return nearbyPostcodes.ToList();
+			}
+			catch (Exception e)
+			{
+				return BadRequest(e.Message);
+			}
+		}
+
+		//[HttpGet("near")]
+		//public async Task<ActionResult<List<string>>> GetPostcodesNearLocation(double latitude, double longitude, double maxDistanceInKilometers)
+		//{
+		//    try
+		//    {
+		//        // Calculate the distance between the provided location and stored locations
+		//        var nearbyPostcodes = _context.PostCodes
+		//            .AsEnumerable()
+		//            .Where(postcode => PostCodeLogic.CalculateDistance(latitude, longitude, postcode.Latitude, postcode.Longitude) <= maxDistanceInKilometers)
+		//            .Select(postcode => postcode.Postcode);
+
+		//        return nearbyPostcodes.ToList();
+		//    }
+		//    catch (Exception e)
+		//    {
+		//        return BadRequest(e.Message);
+		//    }
+		//}
+
+		// POST: api/PostCodes
+		[HttpPost]
         public async Task<ActionResult<PostCodes>> PostPostCodes(PostCodes postCodes)
         {
             try
