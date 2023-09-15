@@ -34,17 +34,25 @@ namespace Challenge.ConsoleApp
 							break;
 						}
 					case 3:
+						// Validate latitude
+						if (!ValidateInputs.ValidateLatitude(args[0]))
+						{
+							await Console.Out.WriteLineAsync("Invalid latitude value.");
+							break;
+						}
+						if (!ValidateInputs.ValidateLongitude(args[1]))
+						{
+							await Console.Out.WriteLineAsync("Invalid longtitude value.");
+							break;
+						}
+						if (!ValidateInputs.ValidateMaxDistanceInKilometers(args[2]))
+						{
+							await Console.Out.WriteLineAsync("Invalid distance value.");
+							break;
+						}
 						await GetPstcodesNearLocation(Double.Parse(args[0]), Double.Parse(args[1]), Double.Parse(args[2]));
 						break;
 					default:
-						// Validate latitude
-						if (ValidateInputs.ValidateLatitude(args[0]) ||
-							ValidateInputs.ValidateLongitude(args[2]) ||
-							ValidateInputs.ValidateMaxDistanceInKilometers(args[3]))
-						{
-							await Console.Out.WriteLineAsync("Invalid parameter value.");
-							break;
-						}
 						await Console.Out.WriteLineAsync("Wrong number of parameters given.");
 						break;
 				}
