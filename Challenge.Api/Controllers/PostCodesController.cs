@@ -67,25 +67,6 @@ namespace Challenge.Api.Controllers
 			}
 		}
 
-		//[HttpGet("near")]
-		//public async Task<ActionResult<List<string>>> GetPostcodesNearLocation(double latitude, double longitude, double maxDistanceInKilometers)
-		//{
-		//    try
-		//    {
-		//        // Calculate the distance between the provided location and stored locations
-		//        var nearbyPostcodes = _context.PostCodes
-		//            .AsEnumerable()
-		//            .Where(postcode => PostCodeLogic.CalculateDistance(latitude, longitude, postcode.Latitude, postcode.Longitude) <= maxDistanceInKilometers)
-		//            .Select(postcode => postcode.Postcode);
-
-		//        return nearbyPostcodes.ToList();
-		//    }
-		//    catch (Exception e)
-		//    {
-		//        return BadRequest(e.Message);
-		//    }
-		//}
-
 		// POST: api/PostCodes
 		[HttpPost]
         public async Task<ActionResult<PostCodes>> PostPostCodes(PostCodes postCodes)

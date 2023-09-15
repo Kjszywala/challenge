@@ -193,7 +193,7 @@ namespace Challenge.ConsoleApp
 		/// <returns></returns>
 		static bool IsCsvFile(string filePath)
 		{
-			return !File.Exists(filePath) || filePath.Contains("csv") ? false : true;
+			return !File.Exists(filePath) || !filePath.Contains("csv") ? false : true;
 		}
 
 		/// <summary>
