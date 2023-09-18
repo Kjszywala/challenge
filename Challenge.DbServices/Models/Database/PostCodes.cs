@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Challenge.Api.Models.Database
+namespace Challenge.DbServices.Models.Database
 {
     /// <summary>
     /// Database PostCodes table class.

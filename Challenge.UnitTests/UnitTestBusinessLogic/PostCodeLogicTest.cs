@@ -35,11 +35,11 @@ namespace Challenge.UnitTests.UnitTestBusinessLogic
         {
             // Arrange
             // New York City, USA
-            double lat1 = 40.7128; 
+            double lat1 = 40.7128;
             double lon1 = -74.0060;
 
             // Distance to itself should be 0
-            double expectedDistance = 0.0; 
+            double expectedDistance = 0.0;
 
             //Act
             double actualDistance = postCodeLogic.CalculateDistance(lat1, lon1, lat1, lon1);
@@ -66,7 +66,7 @@ namespace Challenge.UnitTests.UnitTestBusinessLogic
         {
             // Arrange
             // 90 degrees is n/2 radians
-            double degrees = 90.0; 
+            double degrees = 90.0;
 
             // Act
             double radians = PostCodeLogic.ToRadians(degrees);
@@ -81,7 +81,7 @@ namespace Challenge.UnitTests.UnitTestBusinessLogic
         {
             // Arrange
             // -180 degrees is -n radians
-            double degrees = -180.0; 
+            double degrees = -180.0;
 
             // Act
             double radians = PostCodeLogic.ToRadians(degrees);

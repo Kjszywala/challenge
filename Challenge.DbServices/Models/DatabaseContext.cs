@@ -1,7 +1,7 @@
-﻿using Challenge.Api.Models.Database;
+﻿using Challenge.DbServices.Models.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace Challenge.Api.Models
+namespace Challenge.DbServices.Models
 {
     public class DatabaseContext : DbContext
     {

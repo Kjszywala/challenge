@@ -11,7 +11,7 @@ namespace Challenge.ConsoleApp
 	internal class Program
 	{
 		public const string URI = "/api/PostCodes/";
-		public const string URL = "https://localhost:7008/swagger/v1/swagger.json";
+		public const string URL = "https://localhost:56412/swagger/v1/swagger.json";
 		static async Task Main(string[] args)
         {
 			try

@@ -1,4 +1,4 @@
-using Challenge.Api.Models;
+using Challenge.DbServices.Models;
 using Challenge.BusinessLogic.Interfaces;
 using Challenge.BusinessLogic.Services;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +27,6 @@ namespace Challenge.Api
 
             var app = builder.Build();
 
-
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -38,7 +37,6 @@ namespace Challenge.Api
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

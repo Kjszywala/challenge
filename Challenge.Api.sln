@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Challenge.ConsoleApp", "Cha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Challenge.BusinessLogic", "Challenge.BusinessLogic\Challenge.BusinessLogic.csproj", "{07E6D240-BA99-498B-AA05-1BDA9C2B1743}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Challenge.UnitTests", "Challenge.UnitTests\Challenge.UnitTests.csproj", "{5E3B2CA0-66BB-4108-BE91-516FF60D174B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Challenge.UnitTests", "Challenge.UnitTests\Challenge.UnitTests.csproj", "{5E3B2CA0-66BB-4108-BE91-516FF60D174B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Challenge.DbServices", "Challenge.DbServices\Challenge.DbServices.csproj", "{A624112B-5D00-490F-9E8E-6544E60E2277}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5E3B2CA0-66BB-4108-BE91-516FF60D174B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E3B2CA0-66BB-4108-BE91-516FF60D174B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E3B2CA0-66BB-4108-BE91-516FF60D174B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A624112B-5D00-490F-9E8E-6544E60E2277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A624112B-5D00-490F-9E8E-6544E60E2277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A624112B-5D00-490F-9E8E-6544E60E2277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A624112B-5D00-490F-9E8E-6544E60E2277}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

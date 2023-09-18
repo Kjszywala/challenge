@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Challenge.Api.Models;
-using Challenge.Api.Models.Database;
+using Challenge.DbServices.Models;
+using Challenge.DbServices.Models.Database;
 using Challenge.BusinessLogic.Interfaces;
 using Challenge.Api.Helpers;
 

@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Challenge.BusinessLogic\Challenge.BusinessLogic.csproj" />
+    <ProjectReference Include="..\Challenge.DbServices\Challenge.DbServices.csproj" />
   </ItemGroup>
 
   <ItemGroup>
